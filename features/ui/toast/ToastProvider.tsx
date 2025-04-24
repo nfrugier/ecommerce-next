@@ -7,7 +7,7 @@ import { v4 as uuidv4 } from 'uuid';
 export default function ToastProvider({ children }: { children: React.ReactNode }) {
   const [toasts, setToasts] = useState<ToastMessage[]>([]);
 
-  const addToast = (message: string) => {
+  const addToast = (message: ToastMessage) => {
     const id = uuidv4();
     const toast = { id, text: message };
     setToasts((t) => [...t, toast]);
