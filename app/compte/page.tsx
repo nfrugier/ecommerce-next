@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import { useAuthStore } from '../../features/auth/auth.store';
+import { useEffect } from 'react';
 
 
 export default function ComptePage() {
@@ -15,10 +16,12 @@ export default function ComptePage() {
 
   const login = useAuthStore(state => state.login);
 
-  if (mode === 'login') {
-    login({ email }); // 👈 simule une session
+  useEffect(() => {
+  if (mode === 'login' && email === 'test@demo.fr') {
+    login({ email });
     router.push('/compte/dashboard');
   }
+}, [mode, email]);
   
 
   const handleSubmit = async (e: React.FormEvent) => {
