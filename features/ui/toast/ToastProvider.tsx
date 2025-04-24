@@ -9,7 +9,7 @@ export default function ToastProvider({ children }: { children: React.ReactNode 
 
   const addToast = (message: ToastMessage) => {
     const id = uuidv4();
-    const toast = { id, text: message };
+    const toast = { id, text: message.text };
     setToasts((t) => [...t, toast]);
     setTimeout(() => {
       setToasts((t) => t.filter((msg) => msg.id !== id));
