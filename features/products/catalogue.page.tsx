@@ -21,7 +21,7 @@ export default function CataloguePage() {
 
   const handleAdd = (product) => {
     addToCart(product);
-    toast(`✅ ${product.name} ajouté au panier`);
+    toast({ id: product.id, text: `✅ ${product.name} ajouté au panier` });
     setAdded(product.id);
     setTimeout(() => setAdded(null), 1500);
   };
