@@ -13,8 +13,8 @@ export default function Header() {
 
 
   return (
-    <header className="bg-zinc-900 text-white shadow-sm sticky top-0 z-40 border-b border-zinc-700 rounded-md">
-      <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+    <header className="mx-4 mt-2 bg-zinc-900 text-white shadow-sm sticky top-0 z-40 border-b border-zinc-700 rounded-md">
+      <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2 text-xl font-bold text-white hover:text-gray-300">
           <Home className="w-5 h-5" />
           <span className="hidden sm:inline">Ma Boutique</span>

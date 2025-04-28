@@ -19,7 +19,7 @@ export default function PaiementPage() {
   };
 
   return (
-    <div className="max-w-3xl mx-auto py-10 px-4">
+    <div className="max-w-7xl mx-auto px-4 mt-6">
       <h1 className="text-3xl font-bold mb-6">Paiement</h1>
 
       {items.length === 0 ? (

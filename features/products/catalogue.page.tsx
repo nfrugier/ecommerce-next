@@ -1,4 +1,5 @@
 'use client';
+
 import { useCartStore } from '../cart/cart.store';
 import { useState } from 'react';
 import { useToast } from '../ui/toast/useToast';
@@ -27,7 +28,7 @@ export default function CataloguePage() {
   };
 
   return (
-    <div className="text-center mt-12 space-y-14">
+    <div className="text-center mt-12 space-y-14 mx-4">
       <h1 className="text-3xl font-bold mb-6">Catalogue</h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         {products.map(product => (

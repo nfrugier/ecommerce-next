@@ -27,7 +27,7 @@ export default function Home() {
         </Link>
       </div>
 
-      <section className="max-w-6xl mx-auto px-4 text-left">
+      <section className="max-w-7xl mx-auto px-4 text-left">
         <h2 className="text-2xl font-bold mb-6 flex items-center justify-center gap-2">
           <Star className="w-5 h-5 text-yellow-500" />
           Produits Star

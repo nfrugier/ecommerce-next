@@ -17,7 +17,7 @@ export default function CartPage() {
       {items.length === 0 ? (
         <p>Votre panier est vide.</p>
       ) : (
-        <div className="space-y-4">
+        <div className="space-y-4 max-w-7xl mx-auto px-4">
           {items.map((item) => (
             <div key={item.id} className="flex items-center justify-between border-b pb-2">
               <div>
