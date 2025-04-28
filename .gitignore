@@ -1,0 +1,33 @@
+# Node
+node_modules/
+.env
+.env.local
+.env.development
+.env.production
+.npm
+package-lock.json
+
+# Build / Output
+.next/
+out/
+dist/
+coverage/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# System files
+.DS_Store
+Thumbs.db
+
+# VSCode
+.vscode/
+
+# Prisma (si tu ajoutes plus tard)
+prisma/dev.db
+prisma/dev.db-journal
+
+# Vercel (si tu déploies)
+.vercel/
