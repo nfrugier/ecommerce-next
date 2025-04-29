@@ -1,7 +1,6 @@
-'use client';
-
-import { LayoutGrid, Rocket, Truck, ShieldCheck, Star } from 'lucide-react';
+import { Rocket, Truck, ShieldCheck, Star } from 'lucide-react';
 import Link from 'next/link';
+import {prisma} from '@/lib/prisma';
 
 const featuredProducts = [
   { id: '1', name: 'T-shirt premium', price: 2500, image: 'https://placehold.co/300x300?text=T-shirt' },
@@ -9,12 +8,15 @@ const featuredProducts = [
   { id: '3', name: 'Sac écologique', price: 1800, image: 'https://placehold.co/300x300?text=Sac' },
 ];
 
-export default function Home() {
+export default async function Home() {
+  const config = await prisma.boutiqueConfig.findFirst();
+  const shopName = config?.nom || 'Ma Boutique';
+
   return (
     <div className="text-center mt-12 space-y-14">
       <div className="space-y-2">
         <h1 className="text-4xl font-extrabold text-gray-900">
-          Bienvenue dans la boutique
+          {shopName}
         </h1>
         <p className="text-gray-600 text-lg">
           Des produits simples, cools et utiles. Pour vous.

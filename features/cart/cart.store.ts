@@ -1,45 +1,33 @@
-// /features/cart/cart.store.ts
-import { create } from 'zustand';
-import { persist } from 'zustand/middleware';
+'use client';
 
-type CartItem = {
+import { create } from 'zustand';
+
+interface Product {
   id: string;
   name: string;
   price: number;
   image: string;
-  quantity: number;
-};
+}
 
-type CartStore = {
-  items: CartItem[];
-  addToCart: (item: Omit<CartItem, 'quantity'>) => void;
-  removeFromCart: (id: string) => void;
-  clearCart: () => void;
-};
+interface CartStore {
+  items: { product: Product; quantity: number }[];
+  addToCart: (product: Product) => void;
+}
 
-export const useCartStore = create<CartStore>()(
-  persist(
-    (set, get) => ({
-      items: [],
-      addToCart: (item) => {
-        const existing = get().items.find((i) => i.id === item.id);
-        if (existing) {
-          set({
-            items: get().items.map((i) =>
-              i.id === item.id ? { ...i, quantity: i.quantity + 1 } : i
-            ),
-          });
-        } else {
-          set({ items: [...get().items, { ...item, quantity: 1 }] });
-        }
-      },
-      removeFromCart: (id) => {
-        set({ items: get().items.filter((i) => i.id !== id) });
-      },
-      clearCart: () => set({ items: [] }),
+export const useCartStore = create<CartStore>((set) => ({
+  items: [],
+  addToCart: (product) =>
+    set((state) => {
+      const existing = state.items.find((item) => item.product.id === product.id);
+      if (existing) {
+        return {
+          items: state.items.map((item) =>
+            item.product.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
+          ),
+        };
+      }
+      return {
+        items: [...state.items, { product, quantity: 1 }],
+      };
     }),
-    {
-      name: 'cart-storage', // clé dans localStorage
-    }
-  )
-);
+}));

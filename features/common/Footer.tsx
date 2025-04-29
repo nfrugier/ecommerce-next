@@ -1,9 +1,31 @@
 'use client';
 
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
 
 export default function Footer() {
+  const [nomBoutique, setNomBoutique] = useState('Votre Boutique');
+  const [email, setEmail] = useState('contact@boutique.com');
+  const [adresseComplete, setAdresseComplete] = useState('Adresse de votre boutique');
   const year = new Date().getFullYear();
+
+  useEffect(() => {
+    async function fetchConfig() {
+      try {
+        const res = await fetch('/api/admin/config');
+        const data = await res.json();
+        if (data.nom) setNomBoutique(data.nom);
+        if (data.emailGerant) setEmail(data.emailGerant);
+        if (data.adresse) {
+          setAdresseComplete(`${data.adresse.rue}, ${data.adresse.codePostal} ${data.adresse.ville}`);
+        }
+      } catch (error) {
+        console.error('Erreur chargement config boutique', error);
+      }
+    }
+
+    fetchConfig();
+  }, []);
 
   return (
     <footer className="bg-zinc-900 text-white mt-16 border-t border-zinc-700 rounded-md">
@@ -27,14 +49,14 @@ export default function Footer() {
         <div>
           <h4 className="font-semibold mb-2">Contact</h4>
           <p className="text-gray-400">
-            contact@maboutique.com<br />
+            {email} <br />
             +33 1 23 45 67 89<br />
-            12 rue de la Boutique, 75000 Paris
+            {adresseComplete}
           </p>
         </div>
       </div>
       <div className="text-center text-xs text-gray-500 py-4 border-t border-zinc-800">
-        © {year} Ma Boutique. Tous droits réservés.
+        © {year} {nomBoutique}. Tous droits réservés.
       </div>
     </footer>
   );

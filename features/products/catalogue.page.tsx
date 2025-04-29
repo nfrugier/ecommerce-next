@@ -1,9 +1,7 @@
 'use client';
 
-import { useCartStore } from '../cart/cart.store';
 import { useState } from 'react';
-import { useToast } from '../ui/toast/useToast';
-
+import { useCartActions } from '@/features/cart/cart.service';
 
 const products = [
   { id: '1', name: "T-shirt noir", price: 2000, image: "https://placehold.co/300x300/EEE/31343C" },
@@ -15,14 +13,12 @@ const products = [
 ];
 
 export default function CataloguePage() {
-  const addToCart = useCartStore(state => state.addToCart);
+  const { addProduct } = useCartActions();
   const [added, setAdded] = useState<string | null>(null);
-  const toast = useToast();
-
 
   const handleAdd = (product) => {
-    addToCart(product);
-    toast({ id: product.id, text: `✅ ${product.name} ajouté au panier` });
+    console.log('test');
+    addProduct(product);
     setAdded(product.id);
     setTimeout(() => setAdded(null), 1500);
   };
@@ -30,6 +26,9 @@ export default function CataloguePage() {
   return (
     <div className="text-center mt-12 space-y-14 mx-4">
       <h1 className="text-3xl font-bold mb-6">Catalogue</h1>
+      <button onClick={() => console.log('clic')} className="p-4 bg-red-500 text-white">
+        TEST CLIC
+      </button>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         {products.map(product => (
           <div key={product.id} className="border p-4 rounded shadow-sm">
